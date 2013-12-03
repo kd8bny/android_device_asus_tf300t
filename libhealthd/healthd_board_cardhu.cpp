@@ -21,12 +21,16 @@
 #include <stdio.h>
 #include <unistd.h>
 
+<<<<<<< HEAD
 // from BatteryManager.java
 #define BATTERY_STATUS_UNKNOWN 1
 #define BATTERY_STATUS_CHARGING 2
 #define BATTERY_STATUS_DISCHARGING 3
 #define BATTERY_STATUS_NOT_CHARGING 4
 #define BATTERY_STATUS_FULL 5
+=======
+#define BATTERY_STATUS_UNKNOWN  1 // equals BatteryManager.BATTERY_STATUS_UNKNOWN constant
+>>>>>>> 4efe48e... tf700t|tf300t: libhealthd: Add dock battery support
 
 bool
 healthd_board_isDockPresent() {
@@ -71,7 +75,10 @@ healthd_board_init(struct healthd_config *config)
 int
 healthd_board_battery_update(struct android::BatteryProperties *props)
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4efe48e... tf700t|tf300t: libhealthd: Add dock battery support
     // Cardhu board doesn't have the present sysfs for dock battery, so we need to
     // fill it from the uevent sysfs. If the uevent sysfs have some data then
     // the dock battery is present. The status will be UNKNOWN
@@ -80,6 +87,7 @@ healthd_board_battery_update(struct android::BatteryProperties *props)
         props->dockBatteryStatus = BATTERY_STATUS_UNKNOWN;
     }
 
+<<<<<<< HEAD
     // To follow the AOSP battery contract, the board only should report itself
     // as pluggable when is charging or full charging
     if (props->batteryStatus != BATTERY_STATUS_CHARGING &&
@@ -93,6 +101,12 @@ healthd_board_battery_update(struct android::BatteryProperties *props)
         props->dockBatteryStatus != BATTERY_STATUS_FULL) {
 
         props->chargerDockAcOnline = false;
+=======
+    // Cardhu board reports that the dock is online while is charging with usb, but in fact
+    // the dock only charges with ac
+    if (props->chargerDockAcOnline) {
+        props->chargerDockAcOnline = props->chargerAcOnline;
+>>>>>>> 4efe48e... tf700t|tf300t: libhealthd: Add dock battery support
     }
 
     // return 0 to log periodic polled battery status to kernel log
