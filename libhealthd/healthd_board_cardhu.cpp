@@ -56,11 +56,11 @@ healthd_board_init(struct healthd_config *config)
     //config->batteryCurrentNowPath
     //config->batteryChargeCounterPath
 
-    //config->dockBatterySupported         = true;
-    //config->dockBatteryStatusPath        = "/sys/class/power_supply/dock_battery/status";
+    config->dockBatterySupported         = true;
+    config->dockBatteryStatusPath        = "/sys/class/power_supply/dock_battery/status";
     //config->dockBatteryHealthPath
     //config->dockBatteryPresentPath
-    //config->dockBatteryCapacityPath      = "/sys/class/power_supply/dock_battery/capacity";
+    config->dockBatteryCapacityPath      = "/sys/class/power_supply/dock_battery/capacity";
     //config->dockBatteryVoltagePath
     //config->dockBatteryTemperaturePath
     //config->dockBatteryTechnologyPath
